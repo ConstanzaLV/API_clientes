@@ -7,6 +7,10 @@ def get_users(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.User).offset(skip).limit(limit).all()
 
 
+def get_user_by_id(id: int, db: Session, skip: int = 0, limit: int = 10):
+    return db.query(models.User).filter(models.User.id == id).first()
+
+
 def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.User(**user.dict())
     db.add(db_user)

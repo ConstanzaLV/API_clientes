@@ -10,6 +10,9 @@ router=APIRouter()
 def get_users(db: Session = Depends(get_db)):
     return crud.get_users(db)
 
+@router.get("/{id}")
+def get_user(id: int, db: Session = Depends(get_db)):
+    return crud.get_user_by_id(id, db)
 
 @router.post("")
 def create_users(user: schemas.UserCreate, db: Session = Depends(get_db)):
